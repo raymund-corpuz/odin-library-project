@@ -1,5 +1,6 @@
 const URL = "https://openlibrary.org/search.json";
 const imgURL = "https://covers.openlibrary.org/b/id/";
+const storyURL = "https://openlibrary.org";
 const imageDOM = document.querySelector("#image");
 const main = document.querySelector(".main-section");
 const search = document.querySelector(".search");
@@ -36,6 +37,7 @@ function getImage(element) {
   authorBook.textContent = `Author: ${element.author_name}`;
   publishBook.textContent = `Publish: ${element.first_publish_year}`;
   image.src = `${imgURL}${element.cover_i}-S.jpg`;
+
   image.style.width = "100px";
   image.style.height = "120px";
 
@@ -44,6 +46,21 @@ function getImage(element) {
   bookContainer.appendChild(titleBook);
   titleBook.appendChild(authorBook);
   titleBook.appendChild(publishBook);
+
+  getStory(element.key);
 }
 
 getData();
+
+// fetch(`https://openlibrary.org/works/OL82563W.json`)
+//   .then((res) => res.json())
+//   .then((data) => {
+//     console.log(data.description);
+//   });
+
+async function getStory(showStory) {
+  const response = await fetch(`${storyURL}${showStory}.json`);
+  const data = await response.json();
+
+  console.log(data.description);
+}
