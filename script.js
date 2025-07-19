@@ -2,42 +2,42 @@ const URL = "https://openlibrary.org/search.json";
 const imgURL = "https://covers.openlibrary.org/b/id/";
 const imageDOM = document.querySelector("#image");
 const main = document.querySelector(".main-section");
+const search = document.querySelector(".search");
+const searchBtn = document.querySelector(".search-btn");
 
-const que = "Harry Potter";
+searchBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const searchBook = search.value;
+  const newQue = searchBook.toLowerCase().replaceAll(" ", "+");
+  console.log(newQue);
+  getData(newQue);
+  main.innerHTML = "";
+  search.value = "";
+});
 
-const newQue = que.toLowerCase().replaceAll(" ", "+");
-
-async function getData() {
+async function getData(newQue) {
   const respose = await fetch(`${URL}?q=${newQue}`);
   const data = await respose.json();
-
   const books = data.docs;
-
-  console.log(data.docs[0].title);
-  console.log(data.docs[0].author_name);
-  console.log(data.docs[0].first_publish_year);
-  console.log(data.docs[0].edition_count);
-  console.log(data.docs[0].cover_i);
-  const imgQue = data.docs[0].cover_i;
 
   books.map((book) => getImage(book));
 }
 
 function getImage(element) {
-  console.log(typeof element);
   const bookContainer = document.createElement("div");
-  const titleBook = document.createElement("p");
+  const titleBook = document.createElement("h3");
   const authorBook = document.createElement("p");
   const publishBook = document.createElement("p");
   const image = document.createElement("img");
   bookContainer.classList.add("book-container");
+  titleBook.classList.add("title");
 
   titleBook.textContent = `Title: ${element.title}`;
   authorBook.textContent = `Author: ${element.author_name}`;
   publishBook.textContent = `Publish: ${element.first_publish_year}`;
   image.src = `${imgURL}${element.cover_i}-S.jpg`;
-  image.style.width = "75px";
-  image.style.height = "100px";
+  image.style.width = "100px";
+  image.style.height = "120px";
 
   main.appendChild(bookContainer);
   bookContainer.appendChild(image);

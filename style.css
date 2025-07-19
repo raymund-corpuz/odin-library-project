@@ -54,13 +54,13 @@ nav span svg {
 
   position: relative;
 }
-.search-input input {
+.search {
   width: 100%;
   padding: 0.5rem 1rem;
   margin-right: 1rem;
 }
 
-.search-input button {
+.search-btn {
   color: var(--light);
   background-color: var(--dark-black);
   padding: 0.5rem 1rem;
@@ -97,5 +97,11 @@ nav span svg {
 }
 
 .book-container p {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+h3 {
   color: #fff;
 }
