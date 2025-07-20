@@ -6,6 +6,8 @@ const main = document.querySelector(".main-section");
 const search = document.querySelector(".search");
 const searchBtn = document.querySelector(".search-btn");
 
+let booksArray = [];
+
 searchBtn.addEventListener("click", (e) => {
   e.preventDefault();
   const searchBook = search.value;
@@ -19,9 +21,33 @@ searchBtn.addEventListener("click", (e) => {
 async function getData(newQue) {
   const respose = await fetch(`${URL}?q=${newQue}`);
   const data = await respose.json();
+
   const books = data.docs;
 
-  books.map((book) => getImage(book));
+  // books.map((book) => {
+  //   booksArray.push(book);
+  //   getImage(book);
+  // });
+
+  books
+    .filter((book) => book.title && book.author_name !== "undefined")
+    .map((book) => {
+      getImage(book);
+    });
+
+  // booksArray.forEach((book) => {
+  //   // getImage(book);
+
+  //   if (
+  //     book.title === "undefined" ||
+  //     book.author_name === "undefined" ||
+  //     book.publishBook === "undefined"
+  //   ) {
+  //     console.log(book.title);
+  //   } else {
+  //     getImage(book);
+  //   }
+  // });
 }
 
 function getImage(element) {
@@ -47,20 +73,25 @@ function getImage(element) {
   titleBook.appendChild(authorBook);
   titleBook.appendChild(publishBook);
 
-  getStory(element.key);
+  bookContainer.addEventListener("click", () => openBook(element.key));
+
+  // bookContainer.forEach((book) => {
+  //   book.addEventListener("click", openBook);
+  // });
+
+  // getStory(element.key);
 }
 
 getData();
 
-// fetch(`https://openlibrary.org/works/OL82563W.json`)
-//   .then((res) => res.json())
-//   .then((data) => {
-//     console.log(data.description);
-//   });
-
 async function getStory(showStory) {
   const response = await fetch(`${storyURL}${showStory}.json`);
   const data = await response.json();
+  const result = data.description.value || "No Description";
+  console.log(result);
+}
 
-  console.log(data.description);
+function openBook(key) {
+  console.log("open book");
+  getStory(key);
 }
