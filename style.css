@@ -105,3 +105,19 @@ nav span svg {
 h3 {
   color: #fff;
 }
+
+.book-description-section {
+  color: #fff;
+  line-height: 1.5rem;
+  padding: 1rem;
+}
+
+.book-img {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.book-info h1 {
+  margin: 1rem 0;
+}

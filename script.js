@@ -21,33 +21,13 @@ searchBtn.addEventListener("click", (e) => {
 async function getData(newQue) {
   const respose = await fetch(`${URL}?q=${newQue}`);
   const data = await respose.json();
-
   const books = data.docs;
 
-  // books.map((book) => {
-  //   booksArray.push(book);
-  //   getImage(book);
-  // });
-
   books
-    .filter((book) => book.title && book.author_name !== "undefined")
+    .filter((book) => book.title !== "undefined")
     .map((book) => {
       getImage(book);
     });
-
-  // booksArray.forEach((book) => {
-  //   // getImage(book);
-
-  //   if (
-  //     book.title === "undefined" ||
-  //     book.author_name === "undefined" ||
-  //     book.publishBook === "undefined"
-  //   ) {
-  //     console.log(book.title);
-  //   } else {
-  //     getImage(book);
-  //   }
-  // });
 }
 
 function getImage(element) {
@@ -74,12 +54,6 @@ function getImage(element) {
   titleBook.appendChild(publishBook);
 
   bookContainer.addEventListener("click", () => openBook(element.key));
-
-  // bookContainer.forEach((book) => {
-  //   book.addEventListener("click", openBook);
-  // });
-
-  // getStory(element.key);
 }
 
 getData();
@@ -95,3 +69,16 @@ function openBook(key) {
   console.log("open book");
   getStory(key);
 }
+
+// < -------------------NOt INCLUDED -------------------------->
+
+// async function getDataAgain() {
+//   const respose = await fetch(
+//     `https://openlibrary.org/people/mekBot/books/want-to-read.json`
+//   );
+//   const data = await respose.json();
+
+//   console.log(data);
+// }
+
+// getDataAgain();
