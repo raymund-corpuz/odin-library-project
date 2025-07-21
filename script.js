@@ -7,6 +7,7 @@ const search = document.querySelector(".search");
 const searchBtn = document.querySelector(".search-btn");
 
 let booksArray = [];
+const isShow = false;
 
 searchBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -58,23 +59,14 @@ function getImage(element) {
 
 getData();
 
-const isShow = false;
-
 async function getStory(showStory) {
   const bookWrapper = document.querySelector(".book-main-container");
 
   bookWrapper.innerHTML = "";
-  console.log(showStory.title);
-  console.log(showStory.author_name);
-  console.log(showStory.edition_count);
-  console.log(showStory.first_publish_year);
-  console.log(showStory.first_publish_year - 2025);
-  console.log(showStory.key);
 
   const response = await fetch(`${storyURL}${showStory.key}.json`);
   const data = await response.json();
   const result = data.description.value || "No Description";
-  console.log(result);
 
   const image = document.createElement("img");
   const title = document.createElement("h1");
@@ -105,7 +97,7 @@ async function getStory(showStory) {
 
   showHide(!isShow);
 
-  back.addEventListener("click", () => backToMenu());
+  back.addEventListener("click", backToMenu);
 }
 
 function openBook(key) {
@@ -118,8 +110,6 @@ function backToMenu() {
 }
 
 function showHide(show) {
-  console.log(show);
-
   const book = show ? "show" : "hidden";
   const main = show ? "hidden" : "show";
   const mainSection = document.querySelector(".main-section");
