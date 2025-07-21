@@ -121,3 +121,21 @@ h3 {
 .book-info h1 {
   margin: 1rem 0;
 }
+
+.book-main-container {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  position: absolute;
+  top: 3rem;
+  background-color: black;
+  padding: 1.5rem;
+}
+
+.show {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}

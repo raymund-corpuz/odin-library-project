@@ -21,9 +21,9 @@ searchBtn.addEventListener("click", (e) => {
 async function getData(newQue) {
   const respose = await fetch(`${URL}?q=${newQue}`);
   const data = await respose.json();
-  const books = data.docs;
+  booksArray = data.docs;
 
-  books
+  booksArray
     .filter((book) => book.title !== "undefined")
     .map((book) => {
       getImage(book);
@@ -39,10 +39,10 @@ function getImage(element) {
   bookContainer.classList.add("book-container");
   titleBook.classList.add("title");
 
-  titleBook.textContent = `Title: ${element.title}`;
+  titleBook.textContent = `Title: ${element.title} `;
   authorBook.textContent = `Author: ${element.author_name}`;
   publishBook.textContent = `Publish: ${element.first_publish_year}`;
-  image.src = `${imgURL}${element.cover_i}-S.jpg`;
+  image.src = `${imgURL}${element.cover_i}-L.jpg`;
 
   image.style.width = "100px";
   image.style.height = "120px";
@@ -53,16 +53,52 @@ function getImage(element) {
   titleBook.appendChild(authorBook);
   titleBook.appendChild(publishBook);
 
-  bookContainer.addEventListener("click", () => openBook(element.key));
+  bookContainer.addEventListener("click", () => openBook(element));
 }
 
 getData();
 
+const isShow = false;
+
 async function getStory(showStory) {
-  const response = await fetch(`${storyURL}${showStory}.json`);
+  const bookWrapper = document.querySelector(".book-main-container");
+  console.log(showStory.title);
+  console.log(showStory.author_name);
+  console.log(showStory.edition_count);
+  console.log(showStory.first_publish_year);
+  console.log(showStory.first_publish_year - 2025);
+  console.log(showStory.key);
+
+  const response = await fetch(`${storyURL}${showStory.key}.json`);
   const data = await response.json();
   const result = data.description.value || "No Description";
   console.log(result);
+
+  const image = document.createElement("img");
+  const title = document.createElement("h1");
+  const author = document.createElement("h3");
+  const edition = document.createElement("h4");
+  const publish = document.createElement("h4");
+  const content = document.createElement("p");
+
+  image.src = `${imgURL}${showStory.cover_i}-L.jpg`;
+  title.textContent = `${showStory.title}`;
+  author.textContent = `${showStory.author_name}`;
+  edition.textContent = `${showStory.edition_count}`;
+  publish.textContent = `${showStory.first_publish_year}`;
+  content.textContent = `${result}`;
+
+  image.style.width = "200px";
+  image.style.height = "300px";
+
+  bookWrapper.appendChild(image);
+  bookWrapper.appendChild(title);
+  bookWrapper.appendChild(author);
+  bookWrapper.appendChild(edition);
+  bookWrapper.appendChild(publish);
+  bookWrapper.appendChild(content);
+
+  showHide(!isShow);
 }
 
 function openBook(key) {
@@ -70,15 +106,14 @@ function openBook(key) {
   getStory(key);
 }
 
-// < -------------------NOt INCLUDED -------------------------->
+function showHide(show) {
+  console.log(show);
 
-// async function getDataAgain() {
-//   const respose = await fetch(
-//     `https://openlibrary.org/people/mekBot/books/want-to-read.json`
-//   );
-//   const data = await respose.json();
+  const showOrHide = show ? "show" : "hidden";
 
-//   console.log(data);
-// }
+  const bookWrapper = document.querySelector(".book-main-container");
 
-// getDataAgain();
+  if (bookWrapper.className.includes("hidden")) {
+    bookWrapper.classList.replace("hidden", "showOrHide");
+  }
+}
