@@ -62,6 +62,8 @@ const isShow = false;
 
 async function getStory(showStory) {
   const bookWrapper = document.querySelector(".book-main-container");
+
+  bookWrapper.innerHTML = "";
   console.log(showStory.title);
   console.log(showStory.author_name);
   console.log(showStory.edition_count);
@@ -80,7 +82,9 @@ async function getStory(showStory) {
   const edition = document.createElement("h4");
   const publish = document.createElement("h4");
   const content = document.createElement("p");
+  const back = document.createElement("span");
 
+  back.textContent = "❌";
   image.src = `${imgURL}${showStory.cover_i}-L.jpg`;
   title.textContent = `${showStory.title}`;
   author.textContent = `${showStory.author_name}`;
@@ -91,6 +95,7 @@ async function getStory(showStory) {
   image.style.width = "200px";
   image.style.height = "300px";
 
+  bookWrapper.appendChild(back);
   bookWrapper.appendChild(image);
   bookWrapper.appendChild(title);
   bookWrapper.appendChild(author);
@@ -99,6 +104,8 @@ async function getStory(showStory) {
   bookWrapper.appendChild(content);
 
   showHide(!isShow);
+
+  back.addEventListener("click", () => backToMenu());
 }
 
 function openBook(key) {
@@ -106,14 +113,26 @@ function openBook(key) {
   getStory(key);
 }
 
+function backToMenu() {
+  showHide(!showHide);
+}
+
 function showHide(show) {
   console.log(show);
 
-  const showOrHide = show ? "show" : "hidden";
+  const book = show ? "show" : "hidden";
+  const main = show ? "hidden" : "show";
+  const mainSection = document.querySelector(".main-section");
 
   const bookWrapper = document.querySelector(".book-main-container");
 
   if (bookWrapper.className.includes("hidden")) {
-    bookWrapper.classList.replace("hidden", "showOrHide");
+    bookWrapper.classList.replace("hidden", book);
+    mainSection.classList.replace("show", main);
+  }
+
+  if (bookWrapper.className.includes("show")) {
+    bookWrapper.classList.replace("show", book);
+    mainSection.classList.replace("hidden", main);
   }
 }
