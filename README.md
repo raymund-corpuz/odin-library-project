@@ -55,7 +55,7 @@ A simple web application that allows users to search for books using the **Open 
 
 1. **Clone the repository**
     ```bash
-    git clone https://github.com/your-username/odin-library-app.git
+   [ git clone https://github.com/your-username/odin-library-app.git](https://github.com/raymund-corpuz/odin-library-project.git)
     cd odin-library-app
     ```
 
@@ -66,7 +66,7 @@ A simple web application that allows users to search for books using the **Open 
 ---
 
 ## 🖥️ Live Demo
-> [View Live on GitHub Pages](https://your-username.github.io/odin-library-app)
+> [View Live on GitHub Pages]([https://your-username.github.io/odin-library-app](https://github.com/raymund-corpuz/odin-library-project.git))
 
 ---
 
@@ -90,6 +90,6 @@ This project is licensed under the MIT License.
 ---
 
 ## 📬 Contact
-- GitHub: [@your-username](https://github.com/your-username)
+- GitHub: [@your-username]([https://github.com/your-username](https://github.com/raymund-corpuz/))
 - Email: your-email@example.com
 
