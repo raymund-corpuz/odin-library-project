@@ -4,11 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Update - Odin Library</title>
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
-    <input class="searchInput" type="text" placeholder="Search here..." />
-    <input class="searchSubmit" type="submit" value="Search" />
-    <div class="container"></div>
+    <div class="library-container">
+      <nav class="nav__bar">
+        <div class="logo">Odin Library</div>
+
+        <div class="nav__links">
+          <ul class="nav__items">
+            <li class="nav__item">
+              <a href="" class="nav__link">Home</a>
+            </li>
+            <li class="nav__item">
+              <a href="" class="nav__link">Books</a>
+            </li>
+            <li class="nav__item">
+              <a href="" class="nav__link">Add Book</a>
+            </li>
+            <li class="nav__item">
+              <a href="" class="nav__link">About</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="input-container">
+        <input class="searchInput" type="text" placeholder="Search here..." />
+        <input class="searchSubmit" type="submit" value="Search" />
+      </div>
+
+      <div class="container">
+        <div class="book-container">
+          <img src="https://placehold.co/160x200" alt="" />
+          <div class="book-info">
+            <p class="title">TITLE</p>
+            <p class="author">Author</p>
+            <p class="publish">Publish</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

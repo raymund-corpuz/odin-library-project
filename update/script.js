@@ -1,9 +1,9 @@
 const searchAPI = "https://openlibrary.org/search.json?q=";
 const coverAPI = `https://covers.openlibrary.org/b/id/`;
 
-const container = document.querySelector(".container");
 const searchInput = document.querySelector(".searchInput");
 const searchSubmit = document.querySelector(".searchSubmit");
+const container = document.querySelector(".container");
 
 let booksArray = [];
 
@@ -12,11 +12,12 @@ searchSubmit.addEventListener("click", (e) => {
   e.preventDefault();
   const searchTitle = searchInput.value;
   const searchTitleKey = searchTitle.toLowerCase().replace(/ /g, "+");
-  fetchData(searchTitleKey);
+  container.innerHTML = ""; // clear the containerUI
+  fetchData(searchTitleKey); // searching books
 });
 
+// fetching data from URL
 async function fetchData(searchInput) {
-  console.log(searchInput);
   try {
     const response = await fetch(`${searchAPI}${searchInput}`);
     const data = await response.json();
@@ -27,6 +28,7 @@ async function fetchData(searchInput) {
       }
     });
   } catch (error) {
+    // show when there is an error
     console.error(`Error fetching data: `, error);
   }
 }
@@ -43,11 +45,13 @@ function displayCover(coverID, searchTitle) {
     coverImageUI.src = "./assets/default-book.png";
   };
 
-  container.appendChild(coverImageUI);
-
   coverImageUI.addEventListener("click", () => {
-    window.location.href = "/update/book.html?=${searchTitle}";
+    window.location.href = `./book.html?title=${encodeURIComponent(
+      searchTitle
+    )}`;
   });
+
+  container.appendChild(coverImageUI);
 }
 
 function displayCoverList(coverID) {

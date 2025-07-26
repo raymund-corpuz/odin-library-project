@@ -1,0 +1,24 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  color: #fff;
+}
+
+:root {
+  --dark-black: #212529;
+  --light-black: #343a40;
+  --dark-gray: #495057;
+  --light-gray: #495057;
+  --gray: #6c757d;
+  --lighter-gray: #adb5bd;
+  --semi-light: #ced4da;
+  --light-light: #dee2e6;
+  --lighter-light: #e9ecef;
+  --light: #f8f9fa;
+}
+
+body {
+  background-color: black;
+} */
