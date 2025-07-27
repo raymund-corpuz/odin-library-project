@@ -30,6 +30,7 @@ async function getBookFromURL(book) {
 
 function renderBookList(cover, book) {
   const div = document.createElement("div");
+  const info = document.createElement("div");
   const coverImage = cover
     ? `${coverAPI}${cover}`
     : "./assets/default-book.png";
@@ -47,20 +48,25 @@ function renderBookList(cover, book) {
   }
 
   image.alt = `${book.title}`;
-  image.style.width = "140px";
-  image.style.height = "150px";
+  image.style.width = "160px";
+  image.style.height = "200px";
   title.textContent = `${book.title}`;
   author.textContent = `${book.author_name}`;
   yearPublish.textContent = `${book.first_publish_year}`;
+  div.classList.add("book-container");
+  title.classList.add("title");
+  author.classList.add("author");
+  yearPublish.classList.add("yearPublish");
 
   // image.onerror = () => {
   //   image.src = "./assets/default-book.png";
   // };
 
   div.appendChild(image);
-  div.appendChild(title);
-  div.appendChild(author);
-  div.appendChild(yearPublish);
+  info.appendChild(title);
+  info.appendChild(author);
+  info.appendChild(yearPublish);
+  div.appendChild(info);
   container.appendChild(div);
 
   div.addEventListener("click", () => {

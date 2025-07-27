@@ -42,6 +42,8 @@ async function displayCover(cover, book) {
     console.error(`Error Occured :`, error);
   }
   const container = document.querySelector(".container");
+  const bookContainer = document.createElement("div");
+  const info = document.createElement("div");
   const image = document.createElement("img");
   const title = document.createElement("p");
   const author = document.createElement("p");
@@ -50,17 +52,25 @@ async function displayCover(cover, book) {
   const genre = document.createElement("p");
 
   image.src = `${coverAPI}${cover}-L.jpg`;
-  image.style.width = "200px";
-  image.style.height = "250px";
+  image.style.width = "250px";
+  image.style.height = "300px";
+  bookContainer.classList.add("book-container");
+  info.classList.add("info");
+  title.classList.add("title");
+  author.classList.add("author");
+  yearPublish.classList.add("yearPublish");
+  description.classList.add("description");
 
   title.textContent = book.title;
   author.textContent = book.author_name;
   yearPublish.textContent = book.first_publish_year;
   description.textContent = result;
 
-  container.appendChild(image);
-  container.appendChild(title);
-  container.appendChild(author);
-  container.appendChild(yearPublish);
-  container.appendChild(description);
+  bookContainer.appendChild(image);
+  info.appendChild(title);
+  info.appendChild(author);
+  info.appendChild(yearPublish);
+  info.appendChild(description);
+  bookContainer.appendChild(info);
+  container.appendChild(bookContainer);
 }

@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  color: #fff;
+  font-family: "Quicksand", sans-serif;
+}
+
+:root {
+  --dark-black: #212529;
+  --light-black: #343a40;
+  --dark-gray: #495057;
+  --light-gray: #495057;
+  --gray: #6c757d;
+  --lighter-gray: #adb5bd;
+  --semi-light: #ced4da;
+  --light-light: #dee2e6;
+  --lighter-light: #e9ecef;
+  --light: #f8f9fa;
+}
+
+body {
+  background-color: black;
+}
+
+h1 {
+  font-size: 2rem;
+  color: var(--light);
+}
+p {
+  font-size: 1rem;
+  color: var(--light);
+}
+
+.nav__bar {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1rem 0;
+  align-items: center;
+}
+
+.nav__items {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav__item {
+  list-style-type: none;
+}
+.nav__link {
+  text-decoration: none;
+  font-size: 1rem;
+}
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.header {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.about-book {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.book-container {
+  display: flex;
+  padding: 1rem;
+  background-color: var(--dark-black);
+  margin: 1rem auto;
+  border-radius: 1rem;
+  width: 920px;
+}
+
+.book-container img {
+  border-radius: 0.5rem;
+}
+.info {
+  padding: 1rem 2rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.description {
+  margin: 1rem 0;
+}
+
+.backToBook {
+  text-align: center;
+}
