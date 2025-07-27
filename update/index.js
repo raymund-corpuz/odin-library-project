@@ -34,12 +34,25 @@ async function fetchData(searchInput) {
 }
 
 function displayCover(coverID, book) {
+  console.log(book);
+  const bookContainer = document.createElement("div");
   const coverImageUI = document.createElement("img");
+  const title = document.createElement("p");
+  const author = document.createElement("p");
+  const yearPublish = document.createElement("p");
 
   coverImageUI.src = `${coverAPI}${coverID}-L.jpg`;
   coverImageUI.alt = `Cover image ${book.title}`;
-  coverImageUI.style.width = "180px";
+  coverImageUI.style.width = "160px";
   coverImageUI.style.height = "200px";
+  title.textContent = book.title;
+  author.textContent = book.author_name;
+  yearPublish.textContent = book.first_publish_year;
+
+  title.classList.add("title");
+  author.classList.add("author");
+  yearPublish.classList.add("publish");
+  bookContainer.classList.add("book-container");
 
   coverImageUI.onerror = () => {
     coverImageUI.src = "./assets/default-book.png";
@@ -49,7 +62,11 @@ function displayCover(coverID, book) {
     window.location.href = `./book.html?key=${encodeURIComponent(book.key)}`;
   });
 
-  container.appendChild(coverImageUI);
+  bookContainer.appendChild(coverImageUI);
+  bookContainer.appendChild(title);
+  bookContainer.appendChild(author);
+  bookContainer.appendChild(yearPublish);
+  container.appendChild(bookContainer);
 }
 
 function displayCoverList(coverID) {
