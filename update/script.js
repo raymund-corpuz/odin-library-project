@@ -24,7 +24,7 @@ async function fetchData(searchInput) {
     booksArray = data.docs;
     booksArray.forEach((element) => {
       if (element.cover_i) {
-        displayCover(element.cover_i, element.title);
+        displayCover(element.cover_i, element);
       }
     });
   } catch (error) {
@@ -33,11 +33,11 @@ async function fetchData(searchInput) {
   }
 }
 
-function displayCover(coverID, searchTitle) {
+function displayCover(coverID, book) {
   const coverImageUI = document.createElement("img");
 
   coverImageUI.src = `${coverAPI}${coverID}-L.jpg`;
-  coverImageUI.alt = `Cover image ${searchTitle}`;
+  coverImageUI.alt = `Cover image ${book.title}`;
   coverImageUI.style.width = "180px";
   coverImageUI.style.height = "200px";
 
@@ -46,9 +46,7 @@ function displayCover(coverID, searchTitle) {
   };
 
   coverImageUI.addEventListener("click", () => {
-    window.location.href = `./book.html?title=${encodeURIComponent(
-      searchTitle
-    )}`;
+    window.location.href = `./book.html?key=${encodeURIComponent(book.key)}`;
   });
 
   container.appendChild(coverImageUI);

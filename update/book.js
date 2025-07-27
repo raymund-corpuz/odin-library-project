@@ -2,7 +2,7 @@ const API = "https://openlibrary.org/search.json?limit=15&q=";
 const coverAPI = `https://covers.openlibrary.org/b/id/`;
 
 const params = new URLSearchParams(window.location.search);
-const getBookTitle = params.get("title");
+const getBookTitle = params.get("key");
 const bookTitle = getBookTitle.toLocaleLowerCase().replace(/ /g, "+");
 const container = document.querySelector(".container");
 
@@ -66,7 +66,7 @@ function renderBookList(cover, book) {
   div.addEventListener("click", () => {
     console.log("click");
 
-    window.location.href = `./about-book.html?title=${encodeURIComponent(
+    window.location.href = `./about-book.html?key=${encodeURIComponent(
       bookTitle
     )}`;
   });
